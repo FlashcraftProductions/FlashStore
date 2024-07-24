@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container">
+    <div class="image-section">
+        <img src="brochure.jpg" alt="Brochure Image">
+        <div class="thumbnail-images">
+            <img src="thumb1.jpg" alt="Thumbnail 1">
+            <img src="thumb2.jpg" alt="Thumbnail 2">
+        </div>
+    </div>
+    <div class="details-section">
+        <h1>Brochures</h1>
+        <p class="subheading">Perfect for Trade Shows, Exhibitions, Seminars, and Conferences</p>
+        <ul>
+            <li>Folds & panels help organise or highlight information</li>
+            <li>2 Fold Options: 4 Panel Bi-fold and 6 Panel Trifold</li>
+            <li>Design options for all sizes</li>
+            <li>Delivered pre-folded for your convenience</li>
+            <li>Looking for Brochures in bulk? <a href="#">Click here</a></li>
+        </ul>
+        <p class="highlight">Cash on Delivery available</p>
+        <p>Price below is MRP (inclusive of all taxes)</p>
+        <a href="#">See Details</a>
+        <br>
+        <a href="#">View Specs & Templates</a> to create your print-ready file.
+        <div class="size-selection">
+            <label for="fold">Fold:</label>
+            <select id="fold">
+                <option value="tri-fold">Tri-fold</option>
+                <option value="bi-fold">Bi-fold</option>
+            </select>
+        </div>
+        <div class="quantity-selection">
+            <label for="quantity">Quantity:</label>
+            <div>
+                <input type="radio" id="quantity25" name="quantity" value="25" checked>
+                <label for="quantity25">25</label>
+                <input type="radio" id="quantity50" name="quantity" value="50">
+                <label for="quantity50">50</label>
+            </div>
+        </div>
+        <div class="price-info">
+            <p id="price-25"><span>₹530.00</span> <span class="unit-price">₹21.20 / unit</span></p>
+            <p id="price-50" class="recommended"><span>₹960.00</span> <span class="unit-price">₹19.20 / unit</span> <span class="savings">9% savings</span></p>
+        </div>
+        <button id="add-to-cart">Add to Cart</button>
+    </div>
+</div>
+<script>
+
+document.querySelectorAll('input[name="quantity"]').forEach(input => {
+    input.addEventListener('change', updatePrice);
+});
+
+function updatePrice() {
+    const price25 = document.getElementById('price-25');
+    const price50 = document.getElementById('price-50');
+    const quantity = document.querySelector('input[name="quantity"]:checked').value;
+
+    if (quantity === "25") {
+        price25.style.display = 'block';
+        price50.style.display = 'none';
+    } else {
+        price25.style.display = 'none';
+        price50.style.display = 'block';
+    }
+}
+
+// Initialize the prices on page load
+updatePrice();
+
+
+</script>
+
+
+{% endblock %}
